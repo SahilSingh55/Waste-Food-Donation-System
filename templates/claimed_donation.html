@@ -1,0 +1,46 @@
+{% extends 'donarbase.html' %}
+{% block content %}
+
+<head>
+  {% comment %}
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> {%
+  endcomment %}
+  {% comment %}
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> {% endcomment %}
+  {% comment %}
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> {% endcomment %}
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <style type="text/css">
+    .card-content {
+      display: flex;
+    }
+  </style>
+
+</head>
+
+<div class="note">
+  <p style="color: #4682B4; font-weight: bold; font-size: 20px;">CLAIMED DONATION</p>
+</div>
+<div class="row" style="margin-left: 95px;">
+  {% for c in claims %}
+  <div class="card border-info mb-3" style="width: 18rem; margin-left: 50px;">
+    <div class="card-header">{{c.ngoname}}</div>
+    <div class="card-body">
+      <h5 class="card-title">{{c.foodName}}</h5>
+      <div class="card-content">
+        <h6>Contact No.: </h6>
+        <p class="card-text">{{c.mobile}}</p>
+      </div>
+      <div class="card-content">
+        <h6>Address: </h6>
+        <p class="card-text">{{c.address}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock content %}

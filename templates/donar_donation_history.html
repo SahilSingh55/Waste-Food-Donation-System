@@ -1,0 +1,71 @@
+{% extends 'donarbase.html' %}
+{% comment %} {% load widget_tweaks %} {% endcomment %}
+
+
+
+
+{% block content %}
+
+<head>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        .card-content {
+            display: flex;
+        }
+    
+        .card-text {
+            margin-left: 10px;
+          }
+    </style>
+
+</head>
+
+<div class="note">
+    <p style="color: #4682B4; font-weight: bold; font-size: 20px;">HISTORY</p>
+  </div>
+<div class="row row-cols-1 row-cols-md-2 g-4" style="margin-left: 70px;">
+    {% for d in donations %}
+    <div style="margin-left: 40px; margin-bottom: 25px;">
+        <div class="card" style="width: 233px;">
+            {% if d.foodImage %}
+            <div class="col-md-4">
+                <img src="{{ d.foodImage.url }}" class="card-img-top" alt="..." style="height:42px">
+            </div>
+            {% else %}
+            <div class="col-md-4">
+                <img src="{{ 'static/images/default.jpg' }}" class="card-img-top" alt="..." style="height:42px">
+            </div>
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ d.foodName }}</h5>
+                <div class="card-content">
+                    <h6 class="card-title">Category:</h6>
+                    <p class="card-text">{{ d.inputState }}</p>
+                </div>
+                <div class="card-content">
+                    <h6 class="card-title">Quantity:</h6>
+                    <p class="card-text">{{ d.quantity }}</p>
+                </div>
+                <div class="card-content">
+                    <h6 class="card-title">Hours Passed:</h6>
+                    <p class="card-text">{{ d.hours }}</p>
+                </div>
+                <p class="card-text"><small class="text-muted">Last updated on {{ d.donationdate }}</small></p>
+                {% if d.status %}
+                <h5 class="card-title" style="color:green;">Claimed</h5>
+                {% else %}
+                <h5 class="card-title" style="color:red;">Not Claimed</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
